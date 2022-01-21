@@ -24,25 +24,19 @@ function draw() {
   let x = map(noise(xoff), 0, 1, 0, width)
   let y = map(noise(yoff), 0, 1, 0, height)
   let z = map(noise(zoff), 0, 1, minSize, maxSize)
-  
-  // change result of noise(off)
-  // xoff += 0.008 // >0.001 strobes, creates jerky movement
-  // yoff += 0.008 
 
+  // update mapped position of xoff and yoff with new values, randomize positions based on Perlin Noise
   xoff += map(noise(xoff), 0, 1, 0.0001, 0.006)
-  // yoff += map(noise(yoff), 0, 1, 0.0001, 0.008) 
   yoff += map(noise(yoff), 0, 1, 0.008, 0.0001)
-
+  // update mapped sizes of minSize and maxSize with new values, ranomize size based on Perlin Noise
   zoff += map(noise(zoff), 0, 1, minSize, maxSize)
   
-  // draw an ellipse
+  // draw an ellipse with dynamic positioning and sizing
   ellipse(x, y, z, z)
   
-  // update _x and _y
+  // display values of x and y
   _x = createP('X Offset ' + x)
   _y = createP('Y Offset: ' + y)
-  _x = createP('Z Offset', + z)
-
 }
 
 // #-
