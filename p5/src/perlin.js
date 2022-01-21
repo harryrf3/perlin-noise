@@ -13,6 +13,10 @@ function setup() {
   createCanvas(400, 400)
 }
 
+function entitySizes(minSize, maxSize) {
+  
+}
+
 function draw() {
   
   // prevents scrolling offset results
@@ -41,11 +45,10 @@ function draw() {
   // update _x and _y
   _x = createP('X Offset ' + x)
   _y = createP('Y Offset: ' + y)
-  _x = createP('Z Offset', + z)
-
+  
 }
 
-// #-
+// #--
 
   // minSize && maxSize settings
   // -
