@@ -1,35 +1,28 @@
-// let xoff1 = 0
-// let xoff2 = 1000
-
-// let xoff = 0
-
 let inc = 0.01
-let start = 0
-// console.log('perlin.js') // LOG
 
 function setup() {
-  createCanvas(400, 400)
+  createCanvas(200, 200)
+  pixelDensity(1) // Force high density displays to properly render
 }
 
 function draw() {
-  background(51)
-
-  stroke(255)
-  noFill()
-  beginShape()
-
-  let xoff = start
-  for(var x = 0; x < width; x++) {
-    stroke(255)
-    let n = map(noise(xoff), 0, 1, 0, height)
-    let s = map(sin(xoff), 0, 1, -50, 50)
-    let y = s + n
-    vertex(x, y)
-    xoff += inc // 0.440 middle A on piano ;)
+  let yoff = 0 
+  loadPixels()
+  for (let y = 0; y < height; y++) {
+    let xoff = 0
+    for (let x = 0; x < width; x++) {
+      let index = (x + y * width) * 4
+      let r = noise(xoff, yoff) * 255
+      pixels[index+0] = r
+      pixels[index+1] = r
+      pixels[index+2] = r
+      pixels[index+3] = 255
+      xoff += inc
+    }
+    yoff += inc
   }
-
-  endShape()
-  start += inc
-  // noLoop()
+  updatePixels()
 }
 
+
+console.log('perlin.js') // LOG
