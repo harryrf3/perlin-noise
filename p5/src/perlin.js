@@ -1,12 +1,15 @@
-let inc = 0.01
+let inc
+let val
 
 function setup() {
   createCanvas(200, 200)
   pixelDensity(1) // Force high density displays to properly render
+  inc = createSlider(0.001, 0.5, 0, 0.001)
 }
 
 function draw() {
   let yoff = 0 
+  val = inc.value()
   loadPixels()
   for (let y = 0; y < height; y++) {
     let xoff = 0
@@ -17,9 +20,9 @@ function draw() {
       pixels[index+1] = r
       pixels[index+2] = r
       pixels[index+3] = 255
-      xoff += inc
+      xoff += val
     }
-    yoff += inc
+    yoff += val
   }
   updatePixels()
 }
