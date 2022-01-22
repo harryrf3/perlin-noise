@@ -1,8 +1,10 @@
 // let xoff1 = 0
 // let xoff2 = 1000
 
-let xoff = 0
+// let xoff = 0
 
+let inc = 0.01
+let start = 0
 // console.log('perlin.js') // LOG
 
 function setup() {
@@ -15,27 +17,19 @@ function draw() {
   stroke(255)
   noFill()
   beginShape()
+
+  let xoff = start
   for(var x = 0; x < width; x++) {
     stroke(255)
-    // let y = random(height)
-    let y = noise(xoff) * height
+    let n = map(noise(xoff), 0, 1, 0, height)
+    let s = map(sin(xoff), 0, 1, -50, 50)
+    let y = s + n
     vertex(x, y)
-
-    xoff += 0.02
+    xoff += inc // 0.440 middle A on piano ;)
   }
+
   endShape()
-
-  noLoop()
-
-  // // map the value (0 and 1) of noise(xoff) between 0 and width, 0 and height
-  // let x = map(noise(xoff1), 0, 1, 0, width)
-  // let y = map(noise(xoff2), 0, 1, 0, height)
-  
-  // // add to value of xoff for next move
-  // xoff1 += 0.008 // >0.001 strobes, creates jerky movement
-  // xoff2 += 0.008 // >0.001 strobes, creates jerky movement
-  
-  // // draw an ellipse
-  // ellipse(x, y, 24, 24)
+  start += inc
+  // noLoop()
 }
 
